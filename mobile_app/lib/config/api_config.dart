@@ -2,7 +2,7 @@ class ApiConfig {
   // ✅ IP laptop Anda (ganti kalau berubah)
   static const String baseUrl = 'http://10.0.2.2:3000';
 
-  // static const String baseUrl = 'http://192.168.1.10:3000';
+  //static const String baseUrl = 'http://192.168.100.12:3000';
 
   // MQTT Configuration
   static const String mqttBroker = 'broker.hivemq.com';

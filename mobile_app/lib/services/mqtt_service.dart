@@ -216,11 +216,11 @@ class MQTTService extends ChangeNotifier {
         '✅ [FILTER-PASS] topic "$topic" cocok dengan device "$_currentDeviceId"');
 
     // ✅ FILTER 3 (ANTI-GHOST & ANTI-BACKEND-CHATTER) - PERBAIKAN KRUSIAL
+    // ✅ FILTER 3 (ANTI-GHOST & ANTI-BACKEND-CHATTER) - PERBAIKAN KRUSIAL
     if (!isRetained) {
       if (topic.endsWith('/soil_moisture') ||
           topic.endsWith('/temperature') ||
-          topic.endsWith('/ph') ||
-          topic.endsWith('/status')) {
+          topic.endsWith('/ph')) {
         _lastMessageTime = DateTime.now();
         debugPrint('⏰ [TIME] _lastMessageTime diupdate: $_lastMessageTime');
       }
