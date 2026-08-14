@@ -716,14 +716,19 @@ class _AddDeviceDialogState extends State<_AddDeviceDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _dialogField(
-                  context,
-                  _deviceIdController,
-                  'Device ID ESP32',
-                  'Contoh: ESP32_1434e3ec',
-                  Icons.memory,
-                  (val) =>
-                      val!.trim().isEmpty ? 'Device ID wajib diisi' : null),
+              _dialogField(context, _deviceIdController, 'Device ID ESP32',
+                  'Contoh: ESP32_1434e3ec', Icons.memory, (val) {
+                final trimmed = val!.trim();
+                if (trimmed.isEmpty) {
+                  return 'Device ID wajib diisi';
+                }
+                // ✅ VALIDASI FORMAT: Harus persis "ESP32_" + 8 karakter hex
+                final regex = RegExp(r'^ESP32_[0-9a-fA-F]{8}$');
+                if (!regex.hasMatch(trimmed)) {
+                  return 'Device ID tidak valid! Format: ESP32_xxxxxxxx (8 karakter hex)';
+                }
+                return null;
+              }),
               const SizedBox(height: 16),
               _dialogField(
                   context,
